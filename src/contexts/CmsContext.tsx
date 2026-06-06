@@ -56,6 +56,11 @@ interface CmsContextType {
   deleteService: (id: string) => void;
   updateFooterContent: (f: FooterContent) => void;
   updateContactCta: (c: ContactCtaContent) => void;
+  updateServicePages: (s: ServicePagesContent) => void;
+  updateAirDestinations: (d: AirDestination[]) => void;
+  addAirDestination: (d: AirDestination) => void;
+  deleteAirDestination: (id: string) => void;
+  updateContactPage: (c: ContactPageContent) => void;
 }
 
 const CmsContext = createContext<CmsContextType | undefined>(undefined);
