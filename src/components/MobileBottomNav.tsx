@@ -1,17 +1,25 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Plane, Package, Moon, Phone } from "lucide-react";
+import { Home, Plane, Package, Moon, User } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
+
+type NavItem = {
+  path: string;
+  icon: typeof Home;
+  labelEn: string;
+  labelBn: string;
+  external?: boolean;
+};
 
 const MobileBottomNav = () => {
   const location = useLocation();
   const { lang } = useLang();
 
-  const items = [
+  const items: NavItem[] = [
     { path: "/packages", icon: Package, labelEn: "Package", labelBn: "প্যাকেজ" },
     { path: "/services/air-ticket", icon: Plane, labelEn: "Air Ticket", labelBn: "এয়ার টিকেট" },
     { path: "/", icon: Home, labelEn: "Home", labelBn: "হোম" },
     { path: "/services/hajj-umrah", icon: Moon, labelEn: "Hajj-Umrah", labelBn: "হজ-উমরাহ" },
-    { path: "/contact", icon: Phone, labelEn: "Contact", labelBn: "যোগাযোগ" },
+    { path: "https://primeskyint.net/", icon: User, labelEn: "Profile", labelBn: "প্রোফাইল", external: true },
   ];
 
   return (
@@ -19,29 +27,36 @@ const MobileBottomNav = () => {
       <ul className="grid grid-cols-5 h-16">
         {items.map((item) => {
           const Icon = item.icon;
-          const active = location.pathname === item.path;
+          const active = !item.external && location.pathname === item.path;
           const isHome = item.path === "/";
-          return (
-            <li key={item.path} className="flex">
-              <Link
-                to={item.path}
-                className={`flex-1 flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors ${
-                  active ? "text-gold" : "text-foreground/70 hover:text-primary"
+          const className = `flex-1 flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors ${
+            active ? "text-gold" : "text-foreground/70 hover:text-primary"
+          }`;
+          const inner = (
+            <>
+              <span
+                className={`flex items-center justify-center ${
+                  isHome ? "w-12 h-12 -mt-6 rounded-full bg-gold text-primary shadow-lg" : ""
                 }`}
               >
-                <span
-                  className={`flex items-center justify-center ${
-                    isHome
-                      ? "w-12 h-12 -mt-6 rounded-full bg-gold text-primary shadow-lg"
-                      : ""
-                  }`}
-                >
-                  <Icon className={isHome ? "w-6 h-6" : "w-5 h-5"} />
-                </span>
-                <span className="leading-tight">
-                  {lang === "bn" ? item.labelBn : item.labelEn}
-                </span>
-              </Link>
+                <Icon className={isHome ? "w-6 h-6" : "w-5 h-5"} />
+              </span>
+              <span className="leading-tight">
+                {lang === "bn" ? item.labelBn : item.labelEn}
+              </span>
+            </>
+          );
+          return (
+            <li key={item.path} className="flex">
+              {item.external ? (
+                <a href={item.path} target="_blank" rel="noopener noreferrer" className={className}>
+                  {inner}
+                </a>
+              ) : (
+                <Link to={item.path} className={className}>
+                  {inner}
+                </Link>
+              )}
             </li>
           );
         })}
