@@ -4,7 +4,7 @@ import { useLang } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
-import { LayoutDashboard, FileText, Package, Globe, Settings, LogOut, BookOpen, Menu, Image, BarChart3, Plane, Star, Search, Layers, PanelBottom, Loader2 } from "lucide-react";
+import { LayoutDashboard, FileText, Package, Globe, Settings, LogOut, BookOpen, Menu, Image, BarChart3, Plane, Star, Search, Layers, PanelBottom, Loader2, Plane as PlaneIcon, Mail } from "lucide-react";
 import { apiLogin, setAdminToken, getAdminToken } from "@/lib/api";
 
 const AdminLayout = () => {
@@ -67,6 +67,8 @@ const AdminLayout = () => {
     { path: "/admin", icon: LayoutDashboard, label: t.admin.dashboard },
     { path: "/admin/hero-slides", icon: Image, label: "Hero Slides" },
     { path: "/admin/services", icon: Layers, label: "Services Section" },
+    { path: "/admin/service-pages", icon: PlaneIcon, label: "Service Pages" },
+    { path: "/admin/contact-page", icon: Mail, label: "Contact Page" },
     { path: "/admin/content", icon: FileText, label: t.admin.manageContent },
     { path: "/admin/packages", icon: Package, label: t.admin.managePackages },
     { path: "/admin/visa", icon: Globe, label: t.admin.manageVisa },

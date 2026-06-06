@@ -9,7 +9,8 @@ import BookingFormDialog from "@/components/BookingFormDialog";
 
 const HotelBookingPage = () => {
   const { t, lang } = useLang();
-  const { packages } = useCms();
+  const { packages, servicePages } = useCms();
+  const sp = servicePages.hotelBooking;
   const [bookingOpen, setBookingOpen] = useState(false);
   const [selectedName, setSelectedName] = useState<string>("");
 
@@ -25,20 +26,18 @@ const HotelBookingPage = () => {
       <div className="bg-navy-gradient text-primary-foreground py-16 -mt-16 mb-12">
         <div className="container mx-auto px-4 text-center">
           <Hotel className="w-12 h-12 text-gold mx-auto mb-4" />
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">{t.services.hotel.title}</h1>
-          <p className="text-primary-foreground/80 max-w-2xl mx-auto text-lg">{t.services.hotel.desc}</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{lang === "bn" ? sp.heroTitleBn : sp.heroTitleEn}</h1>
+          <p className="text-primary-foreground/80 max-w-2xl mx-auto text-lg">{lang === "bn" ? sp.heroDescBn : sp.heroDescEn}</p>
         </div>
       </div>
 
       <div className="container mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="text-2xl md:text-3xl font-bold mb-2">
-            {lang === "bn" ? "আমাদের হোটেল প্যাকেজ" : "Our Hotel Packages"}
+            {lang === "bn" ? sp.sectionTitleBn : sp.sectionTitleEn}
           </h2>
           <p className="text-muted-foreground">
-            {lang === "bn"
-              ? "বিশ্বজুড়ে সেরা হোটেলে সাশ্রয়ী মূল্যে বুকিং করুন।"
-              : "Book the best hotels worldwide at affordable prices."}
+            {lang === "bn" ? sp.sectionSubtitleBn : sp.sectionSubtitleEn}
           </p>
         </div>
 

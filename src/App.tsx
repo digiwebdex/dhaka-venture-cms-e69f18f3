@@ -34,6 +34,8 @@ import AdminUmrahOffer from "./pages/admin/AdminUmrahOffer";
 import AdminSEO from "./pages/admin/AdminSEO";
 import AdminServices from "./pages/admin/AdminServices";
 import AdminFooter from "./pages/admin/AdminFooter";
+import AdminServicePages from "./pages/admin/AdminServicePages";
+import AdminContactPage from "./pages/admin/AdminContactPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -79,6 +81,8 @@ const App = () => (
                   <Route path="seo" element={<AdminSEO />} />
                   <Route path="services" element={<AdminServices />} />
                   <Route path="footer" element={<AdminFooter />} />
+                  <Route path="service-pages" element={<AdminServicePages />} />
+                  <Route path="contact-page" element={<AdminContactPage />} />
                 </Route>
 
                 <Route path="*" element={<NotFound />} />

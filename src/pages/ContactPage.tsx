@@ -5,25 +5,31 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const ContactPage = () => {
   const { t, lang } = useLang();
-  const { settings } = useCms();
+  const { settings, contactPage } = useCms();
   const { toast } = useToast();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast({ title: lang === "bn" ? "মেসেজ পাঠানো হয়েছে!" : "Message sent!", description: lang === "bn" ? "আমরা শীঘ্রই যোগাযোগ করব" : "We will contact you soon" });
+    toast({
+      title: lang === "bn" ? contactPage.successTitleBn : contactPage.successTitleEn,
+      description: lang === "bn" ? contactPage.successDescBn : contactPage.successDescEn,
+    });
     setForm({ name: "", email: "", subject: "", message: "" });
   };
 
   return (
     <div className="py-16">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-10 text-center">{t.contact.title}</h1>
+        <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-3 text-center">{t.contact.title}</h1>
+        <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-10">
+          {lang === "bn" ? contactPage.introBn : contactPage.introEn}
+        </p>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-5xl mx-auto">
           {/* Contact Info */}
@@ -33,6 +39,7 @@ const ContactPage = () => {
               { icon: Phone, label: t.contact.phone, value: settings.phone, href: `tel:${settings.phone}` },
               { icon: MessageCircle, label: t.contact.whatsapp, value: settings.whatsapp, href: `https://wa.me/${(settings.whatsapp || "").replace(/[^0-9]/g, "")}` },
               { icon: Mail, label: "Email", value: settings.email, href: `mailto:${settings.email}` },
+              { icon: Clock, label: lang === "bn" ? "অফিস সময়" : "Office Hours", value: lang === "bn" ? contactPage.officeHoursBn : contactPage.officeHoursEn },
             ].map((item, i) => (
               <Card key={i}>
                 <CardContent className="p-5 flex items-start gap-4">
@@ -55,7 +62,7 @@ const ContactPage = () => {
           {/* Contact Form */}
           <Card>
             <CardContent className="p-6">
-              <h2 className="font-bold text-xl mb-4">{t.contact.sendMessage}</h2>
+              <h2 className="font-bold text-xl mb-4">{lang === "bn" ? contactPage.formTitleBn : contactPage.formTitleEn}</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <Input placeholder={t.contact.name} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} required />
                 <Input type="email" placeholder={t.contact.email} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} required />
@@ -68,6 +75,21 @@ const ContactPage = () => {
             </CardContent>
           </Card>
         </div>
+
+        {contactPage.mapEmbedUrl && (
+          <div className="max-w-5xl mx-auto mt-10">
+            <Card className="overflow-hidden">
+              <iframe
+                src={contactPage.mapEmbedUrl}
+                title="Map"
+                className="w-full h-[360px] border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </Card>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -3,9 +3,11 @@ import {
   SiteSettings, PageContent, VisaRate, Package, Booking,
   HeroSlide, StatItem, FlightRoute, UmrahOffer,
   SeoSettings, ServiceItem, FooterContent, ContactCtaContent,
+  ServicePagesContent, AirDestination, ContactPageContent,
   defaultSettings, defaultPageContent, defaultVisaRates, defaultPackages,
   defaultHeroSlides, defaultStats, defaultFlightRoutes, defaultUmrahOffer,
   defaultSeoSettings, defaultServices, defaultFooterContent, defaultContactCta,
+  defaultServicePages, defaultAirDestinations, defaultContactPage,
 } from "@/data/defaultData";
 import { cmsGet, cmsPut, getAdminToken } from "@/lib/api";
 
@@ -23,6 +25,9 @@ interface CmsContextType {
   services: ServiceItem[];
   footerContent: FooterContent;
   contactCta: ContactCtaContent;
+  servicePages: ServicePagesContent;
+  airDestinations: AirDestination[];
+  contactPage: ContactPageContent;
   loaded: boolean;
   updateSettings: (s: SiteSettings) => void;
   updatePageContent: (p: PageContent) => void;
@@ -51,6 +56,11 @@ interface CmsContextType {
   deleteService: (id: string) => void;
   updateFooterContent: (f: FooterContent) => void;
   updateContactCta: (c: ContactCtaContent) => void;
+  updateServicePages: (s: ServicePagesContent) => void;
+  updateAirDestinations: (d: AirDestination[]) => void;
+  addAirDestination: (d: AirDestination) => void;
+  deleteAirDestination: (id: string) => void;
+  updateContactPage: (c: ContactPageContent) => void;
 }
 
 const CmsContext = createContext<CmsContextType | undefined>(undefined);
@@ -94,6 +104,9 @@ const KEYS = {
   services: "services",
   footerContent: "footerContent",
   contactCta: "contactCta",
+  servicePages: "servicePages",
+  airDestinations: "airDestinations",
+  contactPage: "contactPage",
 } as const;
 
 // Hook that hydrates from API once and saves writes back to API (debounced).
@@ -135,6 +148,9 @@ export const CmsProvider = ({ children }: { children: ReactNode }) => {
   const [services, setServices] = useApiState<ServiceItem[]>(KEYS.services, defaultServices, hydrated);
   const [footerContent, setFooterContent] = useApiState<FooterContent>(KEYS.footerContent, defaultFooterContent, hydrated);
   const [contactCta, setContactCta] = useApiState<ContactCtaContent>(KEYS.contactCta, defaultContactCta, hydrated);
+  const [servicePages, setServicePages] = useApiState<ServicePagesContent>(KEYS.servicePages, defaultServicePages, hydrated);
+  const [airDestinations, setAirDestinations] = useApiState<AirDestination[]>(KEYS.airDestinations, defaultAirDestinations, hydrated);
+  const [contactPage, setContactPage] = useApiState<ContactPageContent>(KEYS.contactPage, defaultContactPage, hydrated);
 
   // Bookings stay localStorage-only for now (booking form already pushes to WhatsApp)
   const [bookings, setBookings] = useState<Booking[]>(() => loadCache<Booking[]>("cms_bookings", []));
@@ -159,22 +175,28 @@ export const CmsProvider = ({ children }: { children: ReactNode }) => {
           cmsGet<ServiceItem[]>(KEYS.services),
           cmsGet<FooterContent>(KEYS.footerContent),
           cmsGet<ContactCtaContent>(KEYS.contactCta),
+          cmsGet<ServicePagesContent>(KEYS.servicePages),
+          cmsGet<AirDestination[]>(KEYS.airDestinations),
+          cmsGet<ContactPageContent>(KEYS.contactPage),
         ]);
         if (cancelled) return;
         const setters = [
           setSettings, setPageContent, setVisaRates, setPackages,
           setHeroSlides, setStats, setFlightRoutes, setUmrahOffer,
           setSeoSettings, setServices, setFooterContent, setContactCta,
+          setServicePages, setAirDestinations, setContactPage,
         ];
         const keys = [
           KEYS.settings, KEYS.pageContent, KEYS.visaRates, KEYS.packages,
           KEYS.heroSlides, KEYS.stats, KEYS.flightRoutes, KEYS.umrahOffer,
           KEYS.seoSettings, KEYS.services, KEYS.footerContent, KEYS.contactCta,
+          KEYS.servicePages, KEYS.airDestinations, KEYS.contactPage,
         ];
         const defaults: unknown[] = [
           defaultSettings, defaultPageContent, defaultVisaRates, defaultPackages,
           defaultHeroSlides, defaultStats, defaultFlightRoutes, defaultUmrahOffer,
           defaultSeoSettings, defaultServices, defaultFooterContent, defaultContactCta,
+          defaultServicePages, defaultAirDestinations, defaultContactPage,
         ];
         const missingKeys: { key: string; value: unknown }[] = [];
         results.forEach((r, i) => {
@@ -245,6 +267,7 @@ export const CmsProvider = ({ children }: { children: ReactNode }) => {
       settings, pageContent, visaRates, packages, bookings,
       heroSlides, stats, flightRoutes, umrahOffer,
       seoSettings, services, footerContent, contactCta,
+      servicePages, airDestinations, contactPage,
       loaded: hydrated,
       updateSettings: setSettings,
       updatePageContent: setPageContent,
@@ -273,6 +296,11 @@ export const CmsProvider = ({ children }: { children: ReactNode }) => {
       deleteService: (id) => setServices((prev) => prev.filter((s) => s.id !== id)),
       updateFooterContent: setFooterContent,
       updateContactCta: setContactCta,
+      updateServicePages: setServicePages,
+      updateAirDestinations: setAirDestinations,
+      addAirDestination: (d) => setAirDestinations((prev) => [...prev, d]),
+      deleteAirDestination: (id) => setAirDestinations((prev) => prev.filter((d) => d.id !== id)),
+      updateContactPage: setContactPage,
     }}>
       {children}
     </CmsContext.Provider>
@@ -290,6 +318,9 @@ export const useCms = () => {
       umrahOffer: defaultUmrahOffer, seoSettings: defaultSeoSettings,
       services: defaultServices, footerContent: defaultFooterContent,
       contactCta: defaultContactCta,
+      servicePages: defaultServicePages,
+      airDestinations: defaultAirDestinations,
+      contactPage: defaultContactPage,
       loaded: false,
       updateSettings: () => {}, updatePageContent: () => {},
       updateVisaRates: () => {}, updatePackages: () => {},
@@ -303,6 +334,9 @@ export const useCms = () => {
       updateSeoSettings: () => {}, updateServices: () => {},
       addService: () => {}, deleteService: () => {},
       updateFooterContent: () => {}, updateContactCta: () => {},
+      updateServicePages: () => {}, updateAirDestinations: () => {},
+      addAirDestination: () => {}, deleteAirDestination: () => {},
+      updateContactPage: () => {},
     } as CmsContextType;
   }
   return ctx;
