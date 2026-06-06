@@ -267,6 +267,7 @@ export const CmsProvider = ({ children }: { children: ReactNode }) => {
       settings, pageContent, visaRates, packages, bookings,
       heroSlides, stats, flightRoutes, umrahOffer,
       seoSettings, services, footerContent, contactCta,
+      servicePages, airDestinations, contactPage,
       loaded: hydrated,
       updateSettings: setSettings,
       updatePageContent: setPageContent,
@@ -295,6 +296,11 @@ export const CmsProvider = ({ children }: { children: ReactNode }) => {
       deleteService: (id) => setServices((prev) => prev.filter((s) => s.id !== id)),
       updateFooterContent: setFooterContent,
       updateContactCta: setContactCta,
+      updateServicePages: setServicePages,
+      updateAirDestinations: setAirDestinations,
+      addAirDestination: (d) => setAirDestinations((prev) => [...prev, d]),
+      deleteAirDestination: (id) => setAirDestinations((prev) => prev.filter((d) => d.id !== id)),
+      updateContactPage: setContactPage,
     }}>
       {children}
     </CmsContext.Provider>
