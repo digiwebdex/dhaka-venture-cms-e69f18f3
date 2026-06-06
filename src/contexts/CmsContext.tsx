@@ -175,22 +175,28 @@ export const CmsProvider = ({ children }: { children: ReactNode }) => {
           cmsGet<ServiceItem[]>(KEYS.services),
           cmsGet<FooterContent>(KEYS.footerContent),
           cmsGet<ContactCtaContent>(KEYS.contactCta),
+          cmsGet<ServicePagesContent>(KEYS.servicePages),
+          cmsGet<AirDestination[]>(KEYS.airDestinations),
+          cmsGet<ContactPageContent>(KEYS.contactPage),
         ]);
         if (cancelled) return;
         const setters = [
           setSettings, setPageContent, setVisaRates, setPackages,
           setHeroSlides, setStats, setFlightRoutes, setUmrahOffer,
           setSeoSettings, setServices, setFooterContent, setContactCta,
+          setServicePages, setAirDestinations, setContactPage,
         ];
         const keys = [
           KEYS.settings, KEYS.pageContent, KEYS.visaRates, KEYS.packages,
           KEYS.heroSlides, KEYS.stats, KEYS.flightRoutes, KEYS.umrahOffer,
           KEYS.seoSettings, KEYS.services, KEYS.footerContent, KEYS.contactCta,
+          KEYS.servicePages, KEYS.airDestinations, KEYS.contactPage,
         ];
         const defaults: unknown[] = [
           defaultSettings, defaultPageContent, defaultVisaRates, defaultPackages,
           defaultHeroSlides, defaultStats, defaultFlightRoutes, defaultUmrahOffer,
           defaultSeoSettings, defaultServices, defaultFooterContent, defaultContactCta,
+          defaultServicePages, defaultAirDestinations, defaultContactPage,
         ];
         const missingKeys: { key: string; value: unknown }[] = [];
         results.forEach((r, i) => {
