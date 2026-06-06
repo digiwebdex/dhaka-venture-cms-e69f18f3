@@ -148,6 +148,9 @@ export const CmsProvider = ({ children }: { children: ReactNode }) => {
   const [services, setServices] = useApiState<ServiceItem[]>(KEYS.services, defaultServices, hydrated);
   const [footerContent, setFooterContent] = useApiState<FooterContent>(KEYS.footerContent, defaultFooterContent, hydrated);
   const [contactCta, setContactCta] = useApiState<ContactCtaContent>(KEYS.contactCta, defaultContactCta, hydrated);
+  const [servicePages, setServicePages] = useApiState<ServicePagesContent>(KEYS.servicePages, defaultServicePages, hydrated);
+  const [airDestinations, setAirDestinations] = useApiState<AirDestination[]>(KEYS.airDestinations, defaultAirDestinations, hydrated);
+  const [contactPage, setContactPage] = useApiState<ContactPageContent>(KEYS.contactPage, defaultContactPage, hydrated);
 
   // Bookings stay localStorage-only for now (booking form already pushes to WhatsApp)
   const [bookings, setBookings] = useState<Booking[]>(() => loadCache<Booking[]>("cms_bookings", []));
