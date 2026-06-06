@@ -7,7 +7,8 @@ import { Star } from "lucide-react";
 
 const HajjUmrahPage = () => {
   const { t, lang } = useLang();
-  const { packages } = useCms();
+  const { packages, servicePages } = useCms();
+  const sp = servicePages.hajjUmrah;
   const hajjUmrahPackages = packages.filter((p) => p.category === "umrah" || p.category === "hajj");
 
   return (
@@ -15,8 +16,8 @@ const HajjUmrahPage = () => {
       <div className="bg-navy-gradient text-primary-foreground py-16 -mt-16 mb-12">
         <div className="container mx-auto px-4 text-center">
           <Star className="w-12 h-12 text-gold mx-auto mb-4" />
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">{t.services.hajj.title}</h1>
-          <p className="text-primary-foreground/80 max-w-2xl mx-auto text-lg">{t.services.hajj.desc}</p>
+          <h1 className="text-3xl md:text-4xl font-bold mb-4">{lang === "bn" ? sp.heroTitleBn : sp.heroTitleEn}</h1>
+          <p className="text-primary-foreground/80 max-w-2xl mx-auto text-lg">{lang === "bn" ? sp.heroDescBn : sp.heroDescEn}</p>
         </div>
       </div>
       <div className="container mx-auto px-4">
