@@ -3,9 +3,11 @@ import {
   SiteSettings, PageContent, VisaRate, Package, Booking,
   HeroSlide, StatItem, FlightRoute, UmrahOffer,
   SeoSettings, ServiceItem, FooterContent, ContactCtaContent,
+  ServicePagesContent, AirDestination, ContactPageContent,
   defaultSettings, defaultPageContent, defaultVisaRates, defaultPackages,
   defaultHeroSlides, defaultStats, defaultFlightRoutes, defaultUmrahOffer,
   defaultSeoSettings, defaultServices, defaultFooterContent, defaultContactCta,
+  defaultServicePages, defaultAirDestinations, defaultContactPage,
 } from "@/data/defaultData";
 import { cmsGet, cmsPut, getAdminToken } from "@/lib/api";
 
