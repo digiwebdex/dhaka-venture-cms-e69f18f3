@@ -67,6 +67,8 @@ const AdminLayout = () => {
     { path: "/admin", icon: LayoutDashboard, label: t.admin.dashboard },
     { path: "/admin/hero-slides", icon: Image, label: "Hero Slides" },
     { path: "/admin/services", icon: Layers, label: "Services Section" },
+    { path: "/admin/service-pages", icon: PlaneIcon, label: "Service Pages" },
+    { path: "/admin/contact-page", icon: Mail, label: "Contact Page" },
     { path: "/admin/content", icon: FileText, label: t.admin.manageContent },
     { path: "/admin/packages", icon: Package, label: t.admin.managePackages },
     { path: "/admin/visa", icon: Globe, label: t.admin.manageVisa },
