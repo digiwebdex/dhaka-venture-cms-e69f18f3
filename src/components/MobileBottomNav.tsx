@@ -27,29 +27,36 @@ const MobileBottomNav = () => {
       <ul className="grid grid-cols-5 h-16">
         {items.map((item) => {
           const Icon = item.icon;
-          const active = location.pathname === item.path;
+          const active = !item.external && location.pathname === item.path;
           const isHome = item.path === "/";
-          return (
-            <li key={item.path} className="flex">
-              <Link
-                to={item.path}
-                className={`flex-1 flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors ${
-                  active ? "text-gold" : "text-foreground/70 hover:text-primary"
+          const className = `flex-1 flex flex-col items-center justify-center gap-0.5 text-[10px] font-medium transition-colors ${
+            active ? "text-gold" : "text-foreground/70 hover:text-primary"
+          }`;
+          const inner = (
+            <>
+              <span
+                className={`flex items-center justify-center ${
+                  isHome ? "w-12 h-12 -mt-6 rounded-full bg-gold text-primary shadow-lg" : ""
                 }`}
               >
-                <span
-                  className={`flex items-center justify-center ${
-                    isHome
-                      ? "w-12 h-12 -mt-6 rounded-full bg-gold text-primary shadow-lg"
-                      : ""
-                  }`}
-                >
-                  <Icon className={isHome ? "w-6 h-6" : "w-5 h-5"} />
-                </span>
-                <span className="leading-tight">
-                  {lang === "bn" ? item.labelBn : item.labelEn}
-                </span>
-              </Link>
+                <Icon className={isHome ? "w-6 h-6" : "w-5 h-5"} />
+              </span>
+              <span className="leading-tight">
+                {lang === "bn" ? item.labelBn : item.labelEn}
+              </span>
+            </>
+          );
+          return (
+            <li key={item.path} className="flex">
+              {item.external ? (
+                <a href={item.path} target="_blank" rel="noopener noreferrer" className={className}>
+                  {inner}
+                </a>
+              ) : (
+                <Link to={item.path} className={className}>
+                  {inner}
+                </Link>
+              )}
             </li>
           );
         })}
