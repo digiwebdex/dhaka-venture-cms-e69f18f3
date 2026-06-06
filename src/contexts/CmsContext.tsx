@@ -104,6 +104,9 @@ const KEYS = {
   services: "services",
   footerContent: "footerContent",
   contactCta: "contactCta",
+  servicePages: "servicePages",
+  airDestinations: "airDestinations",
+  contactPage: "contactPage",
 } as const;
 
 // Hook that hydrates from API once and saves writes back to API (debounced).
