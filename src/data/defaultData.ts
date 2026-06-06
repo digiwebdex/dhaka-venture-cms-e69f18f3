@@ -176,6 +176,46 @@ export interface ContactCtaContent {
   subtitleBn: string;
 }
 
+export interface ServicePageHero {
+  heroTitleEn: string;
+  heroTitleBn: string;
+  heroDescEn: string;
+  heroDescBn: string;
+  sectionTitleEn: string;
+  sectionTitleBn: string;
+  sectionSubtitleEn: string;
+  sectionSubtitleBn: string;
+}
+
+export interface ServicePagesContent {
+  hajjUmrah: ServicePageHero;
+  tourPackages: ServicePageHero;
+  airTicket: ServicePageHero;
+  hotelBooking: ServicePageHero;
+  visaProcessing: ServicePageHero;
+}
+
+export interface AirDestination {
+  id: string;
+  nameEn: string;
+  nameBn: string;
+  image: string;
+}
+
+export interface ContactPageContent {
+  introEn: string;
+  introBn: string;
+  officeHoursEn: string;
+  officeHoursBn: string;
+  mapEmbedUrl: string;
+  formTitleEn: string;
+  formTitleBn: string;
+  successTitleEn: string;
+  successTitleBn: string;
+  successDescEn: string;
+  successDescBn: string;
+}
+
 export const defaultSettings: SiteSettings = {
   companyName: "Prime Sky International",
   companyNameBn: "প্রাইম স্কাই ইন্টারন্যাশনাল",
