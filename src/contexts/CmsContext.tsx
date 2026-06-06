@@ -25,6 +25,9 @@ interface CmsContextType {
   services: ServiceItem[];
   footerContent: FooterContent;
   contactCta: ContactCtaContent;
+  servicePages: ServicePagesContent;
+  airDestinations: AirDestination[];
+  contactPage: ContactPageContent;
   loaded: boolean;
   updateSettings: (s: SiteSettings) => void;
   updatePageContent: (p: PageContent) => void;
