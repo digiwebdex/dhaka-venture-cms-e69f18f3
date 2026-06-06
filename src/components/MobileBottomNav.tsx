@@ -1,17 +1,25 @@
 import { Link, useLocation } from "react-router-dom";
-import { Home, Plane, Package, Moon, Phone } from "lucide-react";
+import { Home, Plane, Package, Moon, User } from "lucide-react";
 import { useLang } from "@/contexts/LanguageContext";
+
+type NavItem = {
+  path: string;
+  icon: typeof Home;
+  labelEn: string;
+  labelBn: string;
+  external?: boolean;
+};
 
 const MobileBottomNav = () => {
   const location = useLocation();
   const { lang } = useLang();
 
-  const items = [
+  const items: NavItem[] = [
     { path: "/packages", icon: Package, labelEn: "Package", labelBn: "প্যাকেজ" },
     { path: "/services/air-ticket", icon: Plane, labelEn: "Air Ticket", labelBn: "এয়ার টিকেট" },
     { path: "/", icon: Home, labelEn: "Home", labelBn: "হোম" },
     { path: "/services/hajj-umrah", icon: Moon, labelEn: "Hajj-Umrah", labelBn: "হজ-উমরাহ" },
-    { path: "/contact", icon: Phone, labelEn: "Contact", labelBn: "যোগাযোগ" },
+    { path: "https://primeskyint.net/", icon: User, labelEn: "Profile", labelBn: "প্রোফাইল", external: true },
   ];
 
   return (
