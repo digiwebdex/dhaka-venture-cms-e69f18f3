@@ -81,6 +81,8 @@ const App = () => (
                   <Route path="seo" element={<AdminSEO />} />
                   <Route path="services" element={<AdminServices />} />
                   <Route path="footer" element={<AdminFooter />} />
+                  <Route path="service-pages" element={<AdminServicePages />} />
+                  <Route path="contact-page" element={<AdminContactPage />} />
                 </Route>
 
                 <Route path="*" element={<NotFound />} />
