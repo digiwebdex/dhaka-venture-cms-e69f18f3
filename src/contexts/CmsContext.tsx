@@ -318,6 +318,9 @@ export const useCms = () => {
       umrahOffer: defaultUmrahOffer, seoSettings: defaultSeoSettings,
       services: defaultServices, footerContent: defaultFooterContent,
       contactCta: defaultContactCta,
+      servicePages: defaultServicePages,
+      airDestinations: defaultAirDestinations,
+      contactPage: defaultContactPage,
       loaded: false,
       updateSettings: () => {}, updatePageContent: () => {},
       updateVisaRates: () => {}, updatePackages: () => {},
@@ -331,6 +334,9 @@ export const useCms = () => {
       updateSeoSettings: () => {}, updateServices: () => {},
       addService: () => {}, deleteService: () => {},
       updateFooterContent: () => {}, updateContactCta: () => {},
+      updateServicePages: () => {}, updateAirDestinations: () => {},
+      addAirDestination: () => {}, deleteAirDestination: () => {},
+      updateContactPage: () => {},
     } as CmsContextType;
   }
   return ctx;
