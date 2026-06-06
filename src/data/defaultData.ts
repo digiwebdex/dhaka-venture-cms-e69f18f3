@@ -933,3 +933,70 @@ export const defaultPackages: Package[] = [
     videos: [],
   },
 ];
+
+export const defaultServicePages: ServicePagesContent = {
+  hajjUmrah: {
+    heroTitleEn: "Hajj & Umrah Packages",
+    heroTitleBn: "হজ্জ ও উমরাহ প্যাকেজ",
+    heroDescEn: "Complete packages for holy Hajj & Umrah tours. All responsibilities including visa processing are ours.",
+    heroDescBn: "পবিত্র হজ্জ ও উমরাহ সফরের জন্য সম্পূর্ণ প্যাকেজ। ভিসা প্রসেসিং সহ সকল দায়িত্ব আমাদের।",
+    sectionTitleEn: "", sectionTitleBn: "", sectionSubtitleEn: "", sectionSubtitleBn: "",
+  },
+  tourPackages: {
+    heroTitleEn: "Tour Packages",
+    heroTitleBn: "ট্যুর প্যাকেজ",
+    heroDescEn: "Attractive tour packages domestic and international. Cox's Bazar, Thailand, Dubai and many more destinations.",
+    heroDescBn: "দেশ-বিদেশে আকর্ষণীয় ট্যুর প্যাকেজ। কক্সবাজার, থাইল্যান্ড, দুবাই সহ আরও অনেক গন্তব্য।",
+    sectionTitleEn: "", sectionTitleBn: "", sectionSubtitleEn: "", sectionSubtitleBn: "",
+  },
+  airTicket: {
+    heroTitleEn: "Air Ticket",
+    heroTitleBn: "এয়ার টিকেট",
+    heroDescEn: "Best priced domestic and international air tickets. Dubai, Malaysia, Saudi Arabia, India.",
+    heroDescBn: "সেরা দামে ঘরোয়া ও আন্তর্জাতিক এয়ার টিকেট। দুবাই, মালয়েশিয়া, সৌদি, ভারত।",
+    sectionTitleEn: "", sectionTitleBn: "", sectionSubtitleEn: "", sectionSubtitleBn: "",
+  },
+  hotelBooking: {
+    heroTitleEn: "Hotel Booking",
+    heroTitleBn: "হোটেল বুকিং",
+    heroDescEn: "Booking service at the best hotels worldwide. Quality accommodation at affordable prices.",
+    heroDescBn: "বিশ্বজুড়ে সেরা হোটেলে বুকিং সেবা। সাশ্রয়ী মূল্যে মানসম্মত থাকার ব্যবস্থা।",
+    sectionTitleEn: "Our Hotel Packages",
+    sectionTitleBn: "আমাদের হোটেল প্যাকেজ",
+    sectionSubtitleEn: "Book the best hotels worldwide at affordable prices.",
+    sectionSubtitleBn: "বিশ্বজুড়ে সেরা হোটেলে সাশ্রয়ী মূল্যে বুকিং করুন।",
+  },
+  visaProcessing: {
+    heroTitleEn: "Visa Processing",
+    heroTitleBn: "ভিসা প্রসেসিং",
+    heroDescEn: "All responsibilities including visa processing are ours",
+    heroDescBn: "ভিসা প্রসেসিং সহ সকল দায়িত্ব আমাদের",
+    sectionTitleEn: "Our Visa Packages",
+    sectionTitleBn: "আমাদের ভিসা প্যাকেজ",
+    sectionSubtitleEn: "Fast visa processing service with complete document support.",
+    sectionSubtitleBn: "সম্পূর্ণ ডকুমেন্ট সাপোর্ট সহ দ্রুত ভিসা প্রসেসিং সেবা।",
+  },
+};
+
+export const defaultAirDestinations: AirDestination[] = [
+  { id: "1", nameEn: "Dubai", nameBn: "দুবাই", image: images.dubai },
+  { id: "2", nameEn: "Malaysia", nameBn: "মালয়েশিয়া", image: images.malaysia },
+  { id: "3", nameEn: "Saudi Arabia", nameBn: "সৌদি আরব", image: images.kaaba },
+  { id: "4", nameEn: "India", nameBn: "ভারত", image: images.india },
+  { id: "5", nameEn: "Thailand", nameBn: "থাইল্যান্ড", image: images.thailand },
+  { id: "6", nameEn: "Singapore", nameBn: "সিঙ্গাপুর", image: images.singapore },
+];
+
+export const defaultContactPage: ContactPageContent = {
+  introEn: "Get in touch with us — we'd love to help plan your next trip.",
+  introBn: "আমাদের সাথে যোগাযোগ করুন — আপনার পরবর্তী ভ্রমণ পরিকল্পনায় আমরা সাহায্য করতে চাই।",
+  officeHoursEn: "Saturday – Thursday: 10:00 AM – 8:00 PM",
+  officeHoursBn: "শনিবার – বৃহস্পতিবার: সকাল ১০টা – রাত ৮টা",
+  mapEmbedUrl: "",
+  formTitleEn: "Send Us a Message",
+  formTitleBn: "আমাদের মেসেজ পাঠান",
+  successTitleEn: "Message sent!",
+  successTitleBn: "মেসেজ পাঠানো হয়েছে!",
+  successDescEn: "We will contact you soon",
+  successDescBn: "আমরা শীঘ্রই যোগাযোগ করব",
+};
